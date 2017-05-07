@@ -1,0 +1,19 @@
+SET(CMAKE_INSTALL_PREFIX "$ENV{HOME}/usr/local" CACHE PATH "OVERRIDE" FORCE)
+PROJECT(matrix_market)
+
+cmake_minimum_required(VERSION 2.6)
+
+IF(NOT CMAKE_BUILD_TYPE)
+  SET(CMAKE_BUILD_TYPE Debug CACHE STRING
+      "Choose the type of build, options are: None Debug Release
+RelWithDebInfo MinSizeRel."
+      FORCE)
+ENDIF(NOT CMAKE_BUILD_TYPE)
+
+INCLUDE_DIRECTORIES(${ARCORE_SOURCE_DIR}/mm)
+ADD_SUBDIRECTORY(mm)
+LINK_DIRECTORIES(${ARCORE_BINARY_DIR}/mm)
+
+ENABLE_TESTING()
+ADD_SUBDIRECTORY(unit)
+
